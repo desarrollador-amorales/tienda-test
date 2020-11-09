@@ -1,6 +1,7 @@
 <?php
 include 'global/config.php';
 include 'global/conexion.php';
+include 'carrito.php';
 ?>
 
 <!DOCTYPE html>
@@ -45,9 +46,13 @@ include 'global/conexion.php';
 
     <div class="container">
         <br>
+        <br>
+
         <div class="alert alert-success">
-            Pantalla de mensaje.........
-            <?php print_r($_POST);?>
+            <?php 
+                echo $mensaje; 
+            ?>
+
             <a href="#" class="badge bagde-success">Ver carrito</a>
         </div>
 
@@ -70,7 +75,7 @@ include 'global/conexion.php';
                         <span><?php echo $producto['Nombre'];?></span>
                         <h5 class="card-title">$<?php echo $producto['Precio'];?></h5>
                         <p class="card-text">Descripcion</p>
-                        <!--Cuatro elementos tipo text -->
+                        <!--Cuatro elementos tipo text para enviar el formulario del carrito-->
                         <form action="" method="post">
                             <input type="text" name="id" id="id"
                                 value="<?php echo openssl_encrypt($producto['ID'],COD,KEY);?>">
@@ -90,7 +95,7 @@ include 'global/conexion.php';
             </div>
 
             <?php } ?>
-        </div>
+       <!-- </div>-->
 
         <script>
         $(function() {
