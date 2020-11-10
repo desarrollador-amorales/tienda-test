@@ -86,7 +86,7 @@ include 'carrito.php';
                             <input type="text" name="cantidad" id="cantidad"
                                 value="<?php echo openssl_encrypt(1,COD,KEY);?>">
 
-                            <button class="btn btn-primary" name="btnAction" value="Agregar" type="submit">
+                            <button class="btn btn-primary" name="btnAction" value="Add" type="submit">
                                 Agregar al carrito
                             </button>
                         </form>
