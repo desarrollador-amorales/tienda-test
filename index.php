@@ -7,13 +7,13 @@ include 'templates/cabecera.php';
 <br>
 <br>
 
+<?php if($mensaje!= ""){?>
 <div class="alert alert-success">
-    <?php 
-                echo $mensaje; 
-            ?>
+    <?php echo $mensaje; ?>
 
-    <a href="#" class="badge bagde-success">Ver carrito</a>
+    <a href="MostrarCarrito.php" class="badge bagde-success">Ver carrito</a>
 </div>
+<?php }?>
 
 <div class="row">
     <?php
@@ -25,7 +25,7 @@ include 'templates/cabecera.php';
             ?>
 
     <?php foreach($listaProductos as $producto){ ?>
-        
+
     <div class="col-3">
         <div class="card">
             <img title="<?php echo $producto['Nombre'];?>" class="card-img-top" src="<?php echo $producto['Imagen'];?>"

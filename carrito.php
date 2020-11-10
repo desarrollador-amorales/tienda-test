@@ -48,23 +48,49 @@ session_start();
                         'CANTIDAD'=> $CANTIDAD,
                 );
                     $_SESSION['CARRITO'][0]=$producto;
+                    $mensaje= "Producto agregado al carrito";
         
                 }else{
-                    $numeroProductos=count($_SESSION['CARRITO']);
-                    $producto=array(
-                        'ID'=> $ID,
-                        'NOMBRE'=> $NOMBRE,
-                        'PRECIO'=> $PRECIO,
-                        'CANTIDAD'=> $CANTIDAD,
-                );
+                    $idProductos=array_column($_SESSION['CARRITO'],"ID");
+
+                    if(in_array($ID,$idProductos)){ // pregunto si ese id esta dentro del arreglo de todos los id de los productos
+                        echo "<script> alert('Elemento ya esta agregado al carrito...');</script>";
+                        $mensaje="";
+                    }else{ // caso contrario en caso de que no este agregado el carrito se agrega como un producto mas 
+                        $numeroProductos=count($_SESSION['CARRITO']);
+                        $producto=array(
+                            'ID'=> $ID,
+                            'NOMBRE'=> $NOMBRE,
+                            'PRECIO'=> $PRECIO,
+                            'CANTIDAD'=> $CANTIDAD,
+                                        );
                         $_SESSION['CARRITO'][$numeroProductos]=$producto;
+                        $mensaje= "Producto agregado al carrito";
+                        }
                 }
 
-                $mensaje= print_r($_SESSION, true);
+                //$mensaje= print_r($_SESSION, true);
                 /* Se muestra mensaje de session**/
 
              break;
+
+             case 'Eliminar':
+                if(is_numeric(openssl_decrypt($_POST['id'],COD,KEY))){
+                    $ID = openssl_decrypt($_POST['id'],COD,KEY);
+                  
+                    foreach($_SESSION['CARRITO'] as $indice=>$producto){
+                        if($producto['ID'] == $ID){
+                            unset($_SESSION['CARRITO'][$indice]);
+                            //echo "<script> alert('Elemento borrado...');</script>";
+                        break;/**provisionalmente */
+                        }
+                    }
+
+                }
+            break;
+
          }
+
 
     }
     /**if(isset($_POST['btnAction2'])){
