@@ -82,7 +82,7 @@ session_start();
                         if($producto['ID'] == $ID){
                             unset($_SESSION['CARRITO'][$indice]);
                             //echo "<script> alert('Elemento borrado...');</script>";
-                        break;/**provisionalmente */
+                        break;/**provisionalmente para no eliminar todos los productos con ese id */
                         }
                     }
 
