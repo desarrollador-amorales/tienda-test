@@ -16,7 +16,7 @@ include 'templates/cabecera.php';
             $total=$total+($producto['PRECIO']*$producto['CANTIDAD']);
         
         } 
-    }
+   
 
     //Creacion de la tabla venta del carrito (cabecera)
     $sentencia= $pdo->prepare("INSERT INTO `tblventas` 
@@ -44,6 +44,7 @@ include 'templates/cabecera.php';
         $sentencia->execute();    
 
     }
+}
 
     ?>
 
@@ -68,10 +69,10 @@ include 'templates/cabecera.php';
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '<?php echo $total?>',
-                            description:"Compra de productos a Duramas:$<?php echo number_format($total,2);?>",
-                            custom:"<?php echo $SID;?>#<?php echo openssl_encrypt($idVenta,COD,KEY); ?>"
-                        }
+                            value: '<?php echo $total?>',  
+                        },
+                        description:"Compra de productos a Duramas:$<?php echo number_format($total,2);?>",
+                        reference_id:"<?php echo $SID;?>#<?php echo openssl_encrypt($idVenta,COD,KEY); ?>"
                     }]
                 });
             },
@@ -88,7 +89,7 @@ include 'templates/cabecera.php';
                     // Show a success message to the buyer
                     //alert('Transaccion Completada ' + details.payer.name.given_name + '!');
                     console.log(data);
-                   window.location="verificador.php?orderID="+data.orderID      
+                    window.location="verificador.php?orderID="+data.orderID; //envio de parametros a la pagina de verificador.php     
                 });
             }
 

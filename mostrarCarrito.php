@@ -60,7 +60,7 @@ include 'templates/cabecera.php';
 
         <tr>
             <td colspan="5">
-                <form action="pagar.php" method="post">
+                <form action="pagar_2.php" method="post">
                     <div class="alert alert-success" role="alert">
                         <div class="form-group">
                             <label for="my-input">Correo de contacto:</label>
