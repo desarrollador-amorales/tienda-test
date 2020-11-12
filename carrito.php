@@ -93,8 +93,5 @@ session_start();
 
 
     }
-    /**if(isset($_POST['btnAction2'])){
-        $mensaje.="ID Correcto btnAction2  --->pro";
-    }**/
 
 ?>

@@ -110,7 +110,7 @@ if($_POST){
                     transactions:[{
                         amount: {total: '<?php echo $total; ?>', currency:'USD'},
                         description:"Compra de productos a Duramas:$<?php echo number_format($total,2); ?>",
-                        custom:"<?php echo $SID; ?>#<?php echo openssl_encrypt($idVenta,COD,KEY);    ?>"
+                        custom:"<?php echo $SID; ?>#<?php echo openssl_encrypt($idVenta,COD,KEY);?>" //Se envia por medio del boton de pagos (PayPal) el SID y el id de la venta encriptado para que despues que se haya realizador la venta poder actualizar en nuestra BD Tienda.
                     }]
                 }
             })
