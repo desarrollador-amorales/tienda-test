@@ -30,7 +30,7 @@
                
                 echo "Archivo en Descarga-->";
 
-                $nombreArchivo="archivos/".$listadoProductos[0]['id_producto'].".pdf";
+                $nombreArchivo="archivos/".$listadoProductos[0]['id_producto'].".pdf"; // de acuerdo al id del producto almacenado en la base de datos, se tiene que poner el nombre del archivo para que pueda encontrarlo y descargarlo.
 
                 $nuevoNombreArchivo=$idVenta."--".$idProducto.".pdf";
 
