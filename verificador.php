@@ -9,14 +9,10 @@
 <?php 
     //print_r($_GET);
 
-    $ClientID="Ad7viq2dL6bbvnnvA5QT2BG2iRDSEACSml5CVrC8sY0bNYUR5McegWGgISI9LF4YhQw5s3goA4LpLiTI";
-    $Secret="EBJYjK3CkAZ0svAGqJ--6U8Uy9-lY9MRkmSOfe5DT3Pk-ejSCNHWxvPWvVdR--romDy6rWHksKOESSTG";
-
-
                 // https://developer.paypal.com/docs/api/get-an-access-token-curl/
-                $Login= curl_init("https://api-m.sandbox.paypal.com/v1/oauth2/token"); //Mecanismo de solicitud de Datos
+                $Login= curl_init(LINK_API."/v1/oauth2/token"); //Mecanismo de solicitud de Datos
                 curl_setopt($Login,CURLOPT_RETURNTRANSFER, TRUE);
-                curl_setopt($Login,CURLOPT_USERPWD,$ClientID.":".$Secret); 
+                curl_setopt($Login,CURLOPT_USERPWD,CLIENT_ID.":".SECRET); 
                 curl_setopt($Login,CURLOPT_POSTFIELDS, "grant_type=client_credentials"); //Solicitar toda la informacion que utiliza el ClientID y el secret
                 $Respuesta=curl_exec($Login); //Ejecutar todos los procedimientos anteriores
 
@@ -28,7 +24,7 @@
                 //Recepcion de todos los datos de la compra que se hace
                 /**
                  * Bloque de Codigo que sirve  */
-                $venta = curl_init("https://api.sandbox.paypal.com/v1/payments/payment/".$_GET['paymentID']);
+                $venta = curl_init(LINK_API."/v1/payments/payment/".$_GET['paymentID']);
                 curl_setopt($venta,CURLOPT_HTTPHEADER,array("Content-Type: application/json","Authorization: Bearer ".$accessToken));
                
                 curl_setopt($venta,CURLOPT_RETURNTRANSFER, TRUE); // me sirve para que toda la informacion se almacene en la variable $respuestaVenta
@@ -85,6 +81,7 @@
                     $sentencia->execute();
 
                     $completado=$sentencia->rowCount();//Devolver los registros modificados con la ultima instruccion o sentencia ejecutada.
+                    session_destroy();
 
                 }else{
                     $mensajePayPal="<h3>Hay un problema con el pago de Paypal</h3>";
