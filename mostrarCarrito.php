@@ -40,8 +40,9 @@ include 'templates/cabecera.php';
                     <input type="hidden" name="id" id="id"
                         value="<?php echo openssl_encrypt($producto['ID'],COD,KEY);?>">
                     <button class="btn btn-danger" type="submit" name="btnAction" value="Eliminar">Eliminar</button>
+                </form>
             </td>
-            </form>
+            
         </tr>
 
         <?php $total=$total+($producto['PRECIO']*$producto['CANTIDAD']);?>

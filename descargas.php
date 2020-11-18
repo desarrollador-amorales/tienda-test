@@ -9,7 +9,7 @@
 <!--Controlar las tabla de descargas-->
 <?php 
 
-    print_r($_POST);
+    //print_r($_POST);
 
     if($_POST){ //Si hubo una solicitud con el metodo post
         $idVenta=openssl_decrypt($_POST['IDVENTA'],COD,KEY); //Recibe las variables que le envia des de la pagina verificador.php
@@ -24,7 +24,7 @@
                 $sentencia->execute();
 
             $listadoProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-            print_r($listadoProductos);
+            //print_r($listadoProductos);
 
             if($sentencia->rowCount()>0){
                
